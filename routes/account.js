@@ -9,18 +9,29 @@ router.get('/import-contacts', function(req, res){
     res.render('dashboard/import-contacts');
 });
 
-router.get('/dashboard', function(req, res){
+router.get('/send-message', function(req, res){
     res.render('dashboard/send-message');
 });
 
-router.get('/dashboard', function(req, res){
-    res.render('dashboard/dashboard');
+router.get('/sent-messages', function(req, res){
+    res.render('dashboard/sent-messages');
 });
 
-router.get('/dashboard', function(req, res){
-    res.render('dashboard/dashboard');
+router.get('/imported-contacts', function(req, res){
+    res.render('dashboard/imported-contacts');
 });
 
-// 
+router.get('/upgrade-package', function(req, res){
+    res.render('dashboard/upgrade-package');
+});
+
+// ======================== Account ==========================
+router.get('/account', function(req, res){
+    res.render('account/account');
+});
+
+router.get('/settings', function(req, res){
+    res.render('account/settings');
+});
 
 module.exports = router;
