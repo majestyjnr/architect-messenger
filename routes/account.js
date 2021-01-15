@@ -89,6 +89,12 @@ router.get("/settings", function (req, res) {
   res.render("account/settings");
 });
 
+router.get("/logout", function (req, res) {
+  req.logout();
+  req.flash("success_msg", "You logged out successfully");
+  res.redirect("/");
+});
+
 // ======================== Dashboard ==========================
 
 router.get("/dashboard", function (req, res) {

@@ -16,6 +16,9 @@
     <link rel="icon" type="image/png" href="../favi.png" sizes="32x32">
     <!-- dropify -->
     <link rel="stylesheet" href="../assets/dropify/dropify.min.css">
+    
+    <!-- IZITOAST Libraries -->
+    <link rel="stylesheet" href="../assets/izitoast/css/iziToast.min.css">
 
 </head>
 
@@ -246,16 +249,16 @@
                                             <input type="file" id="input-file-max-fs" class="dropify" accept=".xls"
                                                 data-max-file-size="2M" />
                                         </div>
-                                        
+
                                     </div>
 
                                 </div>
-                                
+
                             </div>
                             <button class="mb-2 mr-2 btn btn-lg btn-primary btn-block">Upload Contacts
                             </button>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="app-wrapper-footer">
@@ -344,6 +347,30 @@
             })
         });
     </script>
+    <!-- IZITOAST -->
+    <script src="../assets/izitoast/js/iziToast.min.js"></script>
+
+    <% if( error != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.error({ title: 'Error!', message: `<%= error %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
+    <% if(error_msg != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.info({ title: 'Info!', message: `<%= error_msg %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
+    <% if(success_msg != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.info({ title: 'Info!', message: `<%= success_msg %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
 </body>
 
 </html>

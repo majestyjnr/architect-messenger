@@ -15,6 +15,9 @@
     <link href="../main.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="../favi.png" sizes="32x32">
 
+    <!-- IZITOAST Libraries -->
+    <link rel="stylesheet" href="../assets/izitoast/css/iziToast.min.css">
+
 </head>
 
 <body>
@@ -86,7 +89,10 @@
                                             class="dropdown-menu dropdown-menu-right">
                                             <a href="/account" type="button" tabindex="0" class="dropdown-item">User
                                                 Account</a>
-                                            <a href="/settings" type="button" tabindex="0" class="dropdown-item">Settings</a>
+                                            <a href="/settings" type="button" tabindex="0"
+                                                class="dropdown-item">Settings</a>
+                                            <a href="/logout" type="button" tabindex="0"
+                                                class="dropdown-item">Logout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +189,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             <li class="app-sidebar__heading">Contacts</li>
                             <li>
                                 <a href="/imported-contacts">
@@ -191,11 +197,10 @@
                                     Imported Contacts
                                 </a>
                             </li>
-                            
+
                             <li class="app-sidebar__heading">PRO Version</li>
                             <li>
-                                <a href="/upgrade-package"
-                                    target="_blank">
+                                <a href="/upgrade-package" target="_blank">
                                     <i class="metismenu-icon pe-7s-graph2">
                                     </i>
                                     Upgrade to PRO
@@ -218,8 +223,8 @@
                                 </div>
                             </div>
                             <div class="page-title-actions">
-                                <button type="button" data-toggle="tooltip" title="User Level"
-                                    data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
+                                <button type="button" data-toggle="tooltip" title="User Level" data-placement="bottom"
+                                    class="btn-shadow mr-3 btn btn-dark">
                                     <i class="fa fa-star"></i>
                                 </button>
                             </div>
@@ -233,7 +238,7 @@
                                         <div class="widget-heading">Total Number of SMS's</div>
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-white"><span>1896</span></div>
+                                        <div class="widget-numbers text-white"><span>0</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -242,10 +247,10 @@
                             <div class="card mb-3 widget-content bg-arielle-smile">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
-                                        <div class="widget-heading">Clients</div>
+                                        <div class="widget-heading">Contacts</div>
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-white"><span>568</span></div>
+                                        <div class="widget-numbers text-white"><span>0</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -255,30 +260,16 @@
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Messages Sent</div>
-                                        <!-- <div class="widget-subheading">People Interested</div> -->
                                     </div>
                                     <div class="widget-content-right">
-                                        <div class="widget-numbers text-white"><span>46</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                            <div class="card mb-3 widget-content bg-premium-dark">
-                                <div class="widget-content-wrapper text-white">
-                                    <div class="widget-content-left">
-                                        <div class="widget-heading">Products Sold</div>
-                                        <div class="widget-subheading">Revenue streams</div>
-                                    </div>
-                                    <div class="widget-content-right">
-                                        <div class="widget-numbers text-warning"><span>$14M</span></div>
+                                        <div class="widget-numbers text-white"><span>0</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                   
+
                 </div>
                 <div class="app-wrapper-footer">
                     <div class="app-footer">
@@ -301,7 +292,8 @@
                             <div class="app-footer-right">
                                 <ul class="nav">
                                     <li class="nav-item">
-                                        <a href="https://maverick-edifice.herokuapp.com" target="_blank" class="nav-link">
+                                        <a href="https://maverick-edifice.herokuapp.com" target="_blank"
+                                            class="nav-link">
                                             <div class="badge badge-success mr-1 ml-0">
                                                 <small>Powered By:</small>
                                             </div>
@@ -318,6 +310,31 @@
         </div>
     </div>
     <script type="text/javascript" src="../assets/scripts/main.js"></script>
+
+    <!-- IZITOAST -->
+    <script src="../assets/izitoast/js/iziToast.min.js"></script>
+
+    <% if( error != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.error({ title: 'Error!', message: `<%= error %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
+    <% if(error_msg != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.info({ title: 'Info!', message: `<%= error_msg %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
+    <% if(success_msg != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.info({ title: 'Info!', message: `<%= success_msg %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
 </body>
 
 </html>

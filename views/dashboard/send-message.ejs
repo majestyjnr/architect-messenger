@@ -14,6 +14,8 @@
 
     <link href="../main.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="../favi.png" sizes="32x32">
+    <!-- IZITOAST Libraries -->
+    <link rel="stylesheet" href="../assets/izitoast/css/iziToast.min.css">
 
 </head>
 
@@ -238,7 +240,7 @@
                                 <div class="widget-content-outer">
                                     <label for="exampleText" class="col-sm-2 col-form-label">Message: </label>
                                     <div class="widget-content-wrapper">
-                       
+
                                         <div class="col-sm-12"><textarea name="text" rows="10"
                                                 class="form-control"></textarea></div>
                                     </div>
@@ -288,6 +290,31 @@
         </div>
     </div>
     <script type="text/javascript" src="../assets/scripts/main.js"></script>
+
+    <!-- IZITOAST -->
+    <script src="../assets/izitoast/js/iziToast.min.js"></script>
+
+    <% if( error != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.error({ title: 'Error!', message: `<%= error %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
+    <% if(error_msg != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.info({ title: 'Info!', message: `<%= error_msg %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
+    <% if(success_msg != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.info({ title: 'Info!', message: `<%= success_msg %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Imported Contacts  &mdash; Architect Messenger</title>
+    <title>Imported Contacts &mdash; Architect Messenger</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="SMS Application" content="This is system for sending bulk sms to clients">
@@ -14,6 +14,8 @@
 
     <link href="../main.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="../favi.png" sizes="32x32">
+    <!-- IZITOAST Libraries -->
+    <link rel="stylesheet" href="../assets/izitoast/css/iziToast.min.css">
 
 </head>
 
@@ -411,6 +413,31 @@
         </div>
     </div>
     <script type="text/javascript" src="../assets/scripts/main.js"></script>
+
+    <!-- IZITOAST -->
+    <script src="../assets/izitoast/js/iziToast.min.js"></script>
+
+    <% if( error != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.error({ title: 'Error!', message: `<%= error %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
+    <% if(error_msg != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.info({ title: 'Info!', message: `<%= error_msg %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
+    <% if(success_msg != '') { %>
+    <script>
+        var notify = new Audio('../assets/sounds/notify.mp3');
+        notify.play();
+        iziToast.info({ title: 'Info!', message: `<%= success_msg %>`, position: 'bottomLeft' })
+    </script>
+    <% } %>
 </body>
 
 </html>
