@@ -56,7 +56,7 @@
             </div>
             <div class="app-header__content">
                 <div class="app-header-left">
-                    <div class="search-wrapper">
+                    <!-- <div class="search-wrapper">
                         <div class="input-holder">
                             <input type="text" class="search-input" placeholder="Type to search">
                             <button class="search-icon"><span></span></button>
@@ -70,7 +70,7 @@
                                 Business Settings
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
@@ -86,9 +86,11 @@
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" tabindex="0" class="dropdown-item">User
+                                            <!-- <button type="button" tabindex="0" class="dropdown-item">User
                                                 Account</button>
-                                            <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                                            <button type="button" tabindex="0" class="dropdown-item">Settings</button> -->
+                                            <a href="/logout" type="button" tabindex="0"
+                                                class="dropdown-item">Logout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -100,12 +102,12 @@
                                         <%= email %>
                                     </div>
                                 </div>
-                                <div class="widget-content-right header-user-info ml-3">
+                                <!-- <div class="widget-content-right header-user-info ml-3">
                                     <button type="button"
                                         class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
                                         <i class="fa text-white fa-calendar pr-1 pl-1"></i>
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -167,12 +169,12 @@
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul class="mm-show">
-                                    <li>
+                                    <!-- <li>
                                         <a href="/import-contacts">
                                             <i class="metismenu-icon"></i>
                                             Import Contacts
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <a href="/send-message" class="mm-active">
                                             <i class="metismenu-icon">
@@ -188,20 +190,20 @@
                                 </ul>
                             </li>
 
-                            <li class="app-sidebar__heading">Contacts</li>
+                            <!-- <li class="app-sidebar__heading">Contacts</li>
                             <li>
                                 <a href="/imported-contacts">
                                     <i class="metismenu-icon pe-7s-display2"></i>
                                     Imported Contacts
                                 </a>
-                            </li>
+                            </li> -->
 
-                            <li class="app-sidebar__heading">PRO Version</li>
+                            <li class="app-sidebar__heading">Buy SMS Credits</li>
                             <li>
-                                <a href="/upgrade-package" target="_blank">
+                                <a href="/upgrade-package">
                                     <i class="metismenu-icon pe-7s-graph2">
                                     </i>
-                                    Upgrade to PRO
+                                    Upgrade Package
                                 </a>
                             </li>
                         </ul>

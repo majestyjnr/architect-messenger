@@ -7,6 +7,7 @@ const router = express.Router();
 // Import Necesssary Models
 const User = require("../models/Users");
 const Config = require("../models/Config");
+const Message = require("../models/Messages");
 
 // ======================== Auth ==========================
 router.get("/", function (req, res) {
@@ -117,13 +118,19 @@ router.get("/logout", function (req, res) {
 // ======================== Dashboard ==========================
 
 router.get("/dashboard", ensureAuthenticated, function (req, res) {
-  res.render("dashboard/dashboard", {
-    firstname: req.user.firstname,
-    fullname: req.user.firstname + " " + req.user.lastname,
-    smsTotal: req.user.smsTotal,
-    contactsTotal: req.user.contacts.length,
-    sentMessagesTotal: req.user.sentMessagesTotal,
-    email: req.user.email,
+  Message.find({ sender_id: req.user._id }, function (err, messages) {
+    let notifications = [];
+    messages.forEach(function (message) {
+      notifications.push(message);
+    });
+    res.render("dashboard/dashboard", {
+      firstname: req.user.firstname,
+      fullname: req.user.firstname + " " + req.user.lastname,
+      smsTotal: req.user.smsTotal,
+      contactsTotal: req.user.contacts.length,
+      sentMessagesTotal: notifications.length,
+      email: req.user.email,
+    });
   });
 });
 
@@ -168,10 +175,20 @@ router.post("/send-message", ensureAuthenticated, function (req, res) {
         },
       };
 
+      const newMessage = new Message({
+        sender_id: req.user._id,
+        sender: req.user.email,
+        message: req.body.message,
+        recipients: req.body.contacts,
+        totalRecipients: contacts.length,
+      });
+
       User.updateOne(
         { _id: req.user._id },
         incrementSMSTotal,
         function (err, increment) {
+          newMessage.save();
+
           Config.find(function (err, data) {
             data.forEach(function (item) {
               const client = require("twilio")(item.accountSid, item.authToken);
@@ -184,10 +201,13 @@ router.post("/send-message", ensureAuthenticated, function (req, res) {
                     to: `+233${contact}`,
                   })
                   .then((message) =>
-                    res.render("dashboard/sent-messages", {
-                      fullname: req.user.firstname + " " + req.user.lastname,
-                      email: req.user.email,
-                      success_msg: "Message sent successfully",
+                    Message.find(function (err, message) {
+                      res.render("dashboard/sent-messages", {
+                        fullname: req.user.firstname + " " + req.user.lastname,
+                        email: req.user.email,
+                        message: message,
+                        success_msg: "Message sent successfully",
+                      });
                     })
                   );
               });
@@ -200,9 +220,22 @@ router.post("/send-message", ensureAuthenticated, function (req, res) {
 });
 
 router.get("/sent-messages", ensureAuthenticated, function (req, res) {
-  res.render("dashboard/sent-messages", {
-    fullname: req.user.firstname + " " + req.user.lastname,
-    email: req.user.email,
+  Message.find(function (err, message) {
+    res.render("dashboard/sent-messages", {
+      fullname: req.user.firstname + " " + req.user.lastname,
+      email: req.user.email,
+      message: message,
+    });
+  });
+});
+
+router.get("/view-message", ensureAuthenticated, function (req, res) {
+  Message.findById({ _id: req.query.id }, function (err, message) {
+    res.render("dashboard/view-message", {
+      fullname: req.user.firstname + " " + req.user.lastname,
+      email: req.user.email,
+      message: message,
+    });
   });
 });
 

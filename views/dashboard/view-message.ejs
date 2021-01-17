@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Upgrade Package &mdash; Architect Messenger</title>
+    <title>Sent Messages &mdash; Architect Messenger</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="SMS Application" content="This is system for sending bulk sms to clients">
@@ -168,7 +168,7 @@
                                     Elements
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
-                                <ul>
+                                <ul class="mm-show">
                                     <!-- <li>
                                         <a href="/import-contacts">
                                             <i class="metismenu-icon"></i>
@@ -182,7 +182,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/sent-messages">
+                                        <a href="/sent-messages" class="mm-active">
                                             <i class="metismenu-icon">
                                             </i>Sent Messages
                                         </a>
@@ -216,10 +216,10 @@
                         <div class="page-title-wrapper">
                             <div class="page-title-heading">
                                 <div class="page-title-icon">
-                                    <i class="pe-7s-graph2 icon-gradient bg-mean-fruit">
+                                    <i class="pe-7s-mail icon-gradient bg-mean-fruit">
                                     </i>
                                 </div>
-                                <div>Upgrade Package
+                                <div>View Message Detail
                                 </div>
                             </div>
                             <div class="page-title-actions">
@@ -241,12 +241,19 @@
                             <div class="card mb-3 widget-content">
                                 <div class="widget-content-outer">
                                     <div class="widget-content-wrapper">
-                                        <div class="widget-content-left">
-                                            <h5 class="card-title">Telephone:</h5>
-                                            <div class="widget-subheading">Contact the telephone number to buy more SMS Credits</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-danger">0559687893</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Total Recipients:</h5>
+                                            <p><%= message.totalRecipients %></p>
+                                            <br>
+                                            <h5 class="card-title">Recipients:</h5>
+                                            <p><%= message.recipients %></p>
+                                            <br>
+                                            <h5 class="card-title">Message:</h5>
+                                            <p><%= message.message %></p>
+                                            <br>
+                                            <br>
+                                            <h5 class="card-title">Date Delivered:</h5>
+                                            <p><%= message.timeSent %></p>
                                         </div>
                                     </div>
                                 </div>
