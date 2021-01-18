@@ -1,3 +1,4 @@
 module.exports = {
-    MongoURI: "mongodb://localhost:27017/architectDB"
+    MongoURI: "mongodb+srv://Majesty:Majesty1@@maverickdb.plvuq.mongodb.net/architectDB?retryWrites=true&w=majority"
 }
+// MongoURI: "mongodb://localhost:27017/architectDB"
