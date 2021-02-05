@@ -263,7 +263,7 @@
                                                 <% if( messages.length != 0){ %>
                                                 <% messages = messages.reverse() %>
                                                 <% messages.forEach(function(text){ %>
-                                                <tbody ondblclick="window.location.href='/view-message?id=<%= text._id %>'" onclick="window.location.href='/view-message?id=<%= text._id %>'" style="cursor: pointer;">
+                                                <tbody ondblclick="window.location.href='/admin/view-message?id=<%= text._id %>'" onclick="window.location.href='/admin/view-message?id=<%= text._id %>'" style="cursor: pointer;">
                                                     <tr>
                                                         <td><%= text.sender %></td>
                                                         <td><%= text.message.substring(0, 40) + '...' %></td>

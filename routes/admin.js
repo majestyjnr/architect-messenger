@@ -165,6 +165,33 @@ router.get(
   }
 );
 
+router.get(
+  "/admin/view-message",
+  ensureAuthenticated,
+  function (req, res) {
+    try {
+      Message.findById({ _id: req.query.id }, function (err, message) {
+        if (message == undefined) {
+          res.status(404).render("404", {
+            error_msg: "Ooooops..... The page could not be found",
+          });
+        } else {
+          res.render("admin/view-message", {
+            fullname: req.user.firstname + " " + req.user.lastname,
+            email: req.user.email,
+            message: message,
+          });
+        }
+      });
+    } catch (error) {
+      res.status(404).render("404", {
+        error_msg: "Ooooops..... The page could not be found",
+      });
+    }
+  }
+);
+
+
 router.get("/admin/accredit-user", ensureAuthenticated, function (req, res) {
   try {
     res.render("admin/accredit-user", {

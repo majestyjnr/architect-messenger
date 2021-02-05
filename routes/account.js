@@ -246,17 +246,10 @@ router.post("/send-message", ensureAuthenticated, function (req, res) {
                       from: "+13128746090",
                       to: `+233${contact}`,
                     })
-                    .then((message) =>
-                      Message.find({ sender_id: req.user._id }, function (err, message) {
-                        res.render("dashboard/sent-messages", {
-                          fullname:
-                            req.user.firstname + " " + req.user.lastname,
-                          email: req.user.email,
-                          message: message,
-                          success_msg: "Message sent successfully",
-                        });
-                      })
-                    );
+                    .then((message) => {
+                      req.flash("success_msg", `Message sent successfully`);
+                      res.redirect("/sent-messages");
+                    });
                 });
               });
             });

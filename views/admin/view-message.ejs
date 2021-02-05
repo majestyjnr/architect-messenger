@@ -80,16 +80,17 @@
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             class="p-0 btn">
-                                            <img width="42" class="rounded-circle" src="assets/images/avatars/user.png"
+                                            <img width="42" class="rounded-circle" src="../assets/images/avatars/user.png"
                                                 alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="dropdown-menu dropdown-menu-right">
-                                            <!-- <button type="button" tabindex="0" class="dropdown-item">User
-                                                Account</button>
-                                            <button type="button" tabindex="0" class="dropdown-item">Settings</button> -->
-                                            <a href="/logout" type="button" tabindex="0"
+                                            <!-- <a href="/account" type="button" tabindex="0" class="dropdown-item">User
+                                                Account</a>
+                                            <a href="/settings" type="button" tabindex="0"
+                                                class="dropdown-item">Settings</a> -->
+                                            <a href="/admin/logout" type="button" tabindex="0"
                                                 class="dropdown-item">Logout</a>
                                         </div>
                                     </div>
@@ -154,21 +155,41 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Dashboard</li>
                             <li>
-                                <a href="/dashboard">
+                                <a href="/admin/dashboard">
                                     <i class="metismenu-icon pe-7s-rocket"></i>
                                     Dashboard
                                 </a>
                             </li>
-
-                            <li class="app-sidebar__heading">Message</li>
+                            <li class="app-sidebar__heading">Admin Management</li>
                             <li>
-
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-eyedropper"></i>
+                                    <i class="metismenu-icon pe-7s-users"></i>
                                     Elements
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
-                                <ul class="mm-show">
+                                <ul>
+                                    <li>
+                                        <a href="/admin/new-admin" >
+                                            <i class="metismenu-icon">
+                                            </i>Register New Admin
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/all-admins">
+                                            <i class="metismenu-icon">
+                                            </i>All Admins
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="app-sidebar__heading">User Management</li>
+                            <li>
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-users"></i>
+                                    Elements
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul  class="mm-show">
                                     <!-- <li>
                                         <a href="/import-contacts">
                                             <i class="metismenu-icon"></i>
@@ -176,36 +197,26 @@
                                         </a>
                                     </li> -->
                                     <li>
-                                        <a href="/send-message">
+                                        <a href="/admin/all-users">
                                             <i class="metismenu-icon">
-                                            </i>Send Message
+                                            </i>All Users
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/sent-messages" class="mm-active">
+                                        <a href="/admin/all-sent-messages" class="mm-active">
                                             <i class="metismenu-icon">
-                                            </i>Sent Messages
+                                            </i>All Sent Messages
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/accredit-user">
+                                            <i class="metismenu-icon">
+                                            </i>Accredit User SMS
                                         </a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <!-- <li class="app-sidebar__heading">Contacts</li>
-                            <li>
-                                <a href="/imported-contacts">
-                                    <i class="metismenu-icon pe-7s-display2"></i>
-                                    Imported Contacts
-                                </a>
-                            </li> -->
-
-                            <li class="app-sidebar__heading">Buy SMS Credits</li>
-                            <li>
-                                <a href="/upgrade-package">
-                                    <i class="metismenu-icon pe-7s-graph2">
-                                    </i>
-                                    Upgrade Package
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -219,7 +230,7 @@
                                     <i class="pe-7s-mail icon-gradient bg-mean-fruit">
                                     </i>
                                 </div>
-                                <div>Sent Messages
+                                <div>View Message Detail
                                 </div>
                             </div>
                             <div class="page-title-actions">
@@ -242,32 +253,18 @@
                                 <div class="widget-content-outer">
                                     <div class="widget-content-wrapper">
                                         <div class="card-body">
-                                            <!-- <h5 class="card-title">Sent Messages</h5> -->
-
-                                            <table class="mb-0 table table-sm table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Message</th>
-                                                        <th>No of Recipients</th>
-                                                        <th>Date Delivered</th>
-                                                    </tr>
-                                                </thead>
-                                                <% if( message.length != 0){ %>
-                                                <% message = message.reverse() %>
-                                                <% message.forEach(function(text){ %>
-                                                <tbody ondblclick="window.location.href='/admin/view-message?id=<%= text._id %>'" onclick="window.location.href='/view-message?id=<%= text._id %>'" style="cursor: pointer;">
-                                                    <tr>
-                                                        <td><%= text.message.substring(0, 60) + '...' %></td>
-                                                        <td><%= text.totalRecipients %></td>
-                                                        <td><%= text.timeSent %></td>
-                                                    </tr>
-                                                </tbody>
-                                                <% }) %>
-                                                <% } else { %>
-                                                <h1><b>No Messages Sent</b></h1>
-                                                <% } %>
-                                            </table>
-
+                                            <h5 class="card-title">Total Recipients:</h5>
+                                            <p><%= message.totalRecipients %></p>
+                                            <br>
+                                            <h5 class="card-title">Recipients:</h5>
+                                            <p><%= message.recipients %></p>
+                                            <br>
+                                            <h5 class="card-title">Message:</h5>
+                                            <p><%= message.message %></p>
+                                            <br>
+                                            <br>
+                                            <h5 class="card-title">Date Delivered:</h5>
+                                            <p><%= message.timeSent %></p>
                                         </div>
                                     </div>
                                 </div>
