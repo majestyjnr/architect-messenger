@@ -232,20 +232,20 @@ router.post("/admin/accredit-user", ensureAuthenticated, function (req, res) {
                 { email: req.body.email },
                 addSMSPoints,
                 function (err, smsUpdated) {
-                  if (!smsUpdated) {
-                    res.render("admin/accredit-user", {
-                      fullname: req.user.firstname + " " + req.user.lastname,
-                      email: req.user.email,
-                      error_msg: "Error updating SMS Points!",
-                    });
+                  if (!smsUpdated) {                 
+                    req.flash("error_msg", `Error updating SMS Points!`);
+                    res.redirect("/admin/accredit-user");
                   } else {
                     User.find(function (err, users) {
-                      res.render("admin/all-users", {
-                        users: users,
-                        fullname: req.user.firstname + " " + req.user.lastname,
-                        email: req.user.email,
-                        success_msg: "User' SMS points updated successfully!",
-                      });
+                      req.flash("success_msg", `User' SMS points updated successfully!`);
+                      res.redirect("/admin/all-users");
+
+                      // res.render("admin/all-users", {
+                      //   users: users,
+                      //   fullname: req.user.firstname + " " + req.user.lastname,
+                      //   email: req.user.email,
+                      //   success_msg: "User' SMS points updated successfully!",
+                      // });
                     });
                   }
                 }
