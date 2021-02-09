@@ -222,6 +222,7 @@ router.post("/send-message", ensureAuthenticated, function (req, res) {
         const newMessage = new Message({
           sender_id: req.user._id,
           sender: req.user.email,
+          messageSenderID: req.body.senderID,
           message: req.body.message,
           recipients: req.body.contacts,
           totalRecipients: contacts.length,

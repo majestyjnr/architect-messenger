@@ -259,6 +259,13 @@
                                             <h5 class="card-title">Recipients:</h5>
                                             <p><%= message.recipients %></p>
                                             <br>
+                                            <% if(message.messageSenderID){ %>
+                                            <h5 class="card-title">senderID:</h5>
+                                            <p>
+                                                <%= message.messageSenderID %>
+                                            </p>
+                                            <% }%>
+                                            <br>
                                             <h5 class="card-title">Message:</h5>
                                             <p><%= message.message %></p>
                                             <br>

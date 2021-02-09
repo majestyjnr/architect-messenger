@@ -9,6 +9,10 @@ const configSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  messageSenderID: {
+    type: String,
+    required: true,
+  },
   message: {
     type: String,
     required: true,
